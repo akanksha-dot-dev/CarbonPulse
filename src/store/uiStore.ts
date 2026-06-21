@@ -59,7 +59,7 @@ interface UIState {
   toggleDarkMode: () => void;
 }
 
-export const useUIStore = create<UIState>()((set, get) => ({
+export const useUIStore = create<UIState>()((set) => ({
   // Wizard
   wizardStep: 1,
   wizardCompleted: false,

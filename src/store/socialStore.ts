@@ -122,7 +122,7 @@ interface SocialState {
 
 export const useSocialStore = create<SocialState>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       leagues: [],
       joinedLeagueIds: [],
       globalChallenges: MOCK_CHALLENGES,
