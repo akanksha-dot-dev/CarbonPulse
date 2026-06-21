@@ -1,26 +1,176 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Custom Properties ─────────────────────────────────────────────── */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --emerald-glow: 0 0 20px rgba(52, 211, 153, 0.15);
+  --card-bg: rgba(15, 23, 42, 0.7);
+  --border-subtle: rgba(51, 65, 85, 0.6);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── Base Reset & Typography ────────────────────────────────────────────── */
+
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #020617;
+  color: #f1f5f9;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── Selection ──────────────────────────────────────────────────────────── */
+
+::selection {
+  background-color: rgba(52, 211, 153, 0.25);
+  color: #d1fae5;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* ─── Focus Ring Override ────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid #34d399;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Animations ─────────────────────────────────────────────────────────── */
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+  50% { box-shadow: 0 0 20px 4px rgba(52, 211, 153, 0.2); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes counter-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Utility Animation Classes ──────────────────────────────────────────── */
+
+.animate-slide-up { animation: slide-up 0.4s ease-out both; }
+.animate-fade-in { animation: fade-in 0.3s ease-out both; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+.animate-gradient { animation: gradient-x 4s ease infinite; background-size: 200% 200%; }
+.animate-spin-slow { animation: spin-slow 8s linear infinite; }
+
+/* ─── Glassmorphism Card ─────────────────────────────────────────────────── */
+
+.glass-card {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  border-radius: 16px;
+}
+
+/* ─── Gradient Text ──────────────────────────────────────────────────────── */
+
+.gradient-text {
+  background: linear-gradient(135deg, #34d399, #06b6d4, #818cf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-emerald {
+  background: linear-gradient(135deg, #34d399, #10b981);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ─── Hero Background ────────────────────────────────────────────────────── */
+
+.hero-bg {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(16, 185, 129, 0.15), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(99, 102, 241, 0.08), transparent),
+    #020617;
+}
+
+/* ─── Mesh Grid Background ───────────────────────────────────────────────── */
+
+.mesh-bg {
+  background-image:
+    linear-gradient(rgba(52, 211, 153, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(52, 211, 153, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ─── Number Font ────────────────────────────────────────────────────────── */
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* ─── Recharts Overrides ─────────────────────────────────────────────────── */
+
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: rgba(30, 41, 59, 0.8);
+}
+
+.recharts-tooltip-wrapper {
+  outline: none;
 }
