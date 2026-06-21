@@ -46,13 +46,13 @@ export function stripNonNumeric(value: string): string {
 
 const positiveNumber = (max: number, label: string) =>
   z
-    .number({ invalid_type_error: `${label} must be a number` })
+    .number({ message: `${label} must be a number` })
     .min(0, `${label} cannot be negative`)
     .max(max, `${label} exceeds maximum allowed value`);
 
 const ratioField = (label: string) =>
   z
-    .number({ invalid_type_error: `${label} must be a number` })
+    .number({ message: `${label} must be a number` })
     .min(0, `${label} must be at least 0`)
     .max(1, `${label} must be at most 1 (100%)`);
 
@@ -60,7 +60,7 @@ const ratioField = (label: string) =>
 
 export const transportSchema = z.object({
   mode: z.enum(['ev', 'ice', 'hybrid', 'transit', 'bicycle', 'aviation'], {
-    errorMap: () => ({ message: 'Please select a valid transport mode' }),
+    message: 'Please select a valid transport mode',
   }),
   dailyDistanceKm: positiveNumber(2000, 'Daily distance'),
   daysPerWeek: positiveNumber(7, 'Days per week').int('Must be a whole number'),
@@ -93,10 +93,10 @@ export type EnergyFormData = z.infer<typeof energySchema>;
 
 export const dietSchema = z.object({
   profile: z.enum(['vegan', 'vegetarian', 'pescatarian', 'omnivore', 'high_meat'], {
-    errorMap: () => ({ message: 'Please select a valid diet profile' }),
+    message: 'Please select a valid diet profile',
   }),
   wasteFrequency: z.enum(['very_low', 'low', 'average', 'high', 'very_high'], {
-    errorMap: () => ({ message: 'Please select a valid waste frequency' }),
+    message: 'Please select a valid waste frequency',
   }),
   localFoodRatio: ratioField('Local food ratio'),
   composting: z.boolean(),
@@ -111,7 +111,7 @@ export const consumptionSchema = z.object({
   monthlyElectronicsSpend: positiveNumber(50_000, 'Electronics spend'),
   monthlyOtherGoodsSpend: positiveNumber(50_000, 'Other goods spend'),
   recyclingHabit: z.enum(['none', 'partial', 'most', 'all'], {
-    errorMap: () => ({ message: 'Please select a valid recycling habit' }),
+    message: 'Please select a valid recycling habit',
   }),
   buySecondHand: z.boolean(),
   repairFirst: z.boolean(),
