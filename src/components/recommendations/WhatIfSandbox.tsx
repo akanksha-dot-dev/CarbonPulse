@@ -12,7 +12,6 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  Legend,
 } from 'recharts';
 import { useUIStore } from '@/store/uiStore';
 import { useTotalEmissions } from '@/store/carbonStore';

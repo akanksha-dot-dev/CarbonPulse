@@ -7,7 +7,6 @@
 import {
   RadialBarChart,
   RadialBar,
-  Legend,
   ResponsiveContainer,
   Tooltip,
 } from 'recharts';

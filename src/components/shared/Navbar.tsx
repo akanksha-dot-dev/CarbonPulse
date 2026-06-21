@@ -5,8 +5,9 @@
  */
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Leaf, LayoutDashboard, Lightbulb, Menu, X, Moon, Sun, LogIn, LogOut, User } from 'lucide-react';
+import { Leaf, LayoutDashboard, Lightbulb, Menu, X, Moon, Sun, LogIn, User } from 'lucide-react';
 import { useState } from 'react';
 import { useUIStore } from '@/store/uiStore';
 import { useUserStore } from '@/store/userStore';
@@ -92,9 +93,11 @@ export function Navbar() {
               <div className="hidden md:flex items-center gap-2">
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50">
                   {profile.photoURL ? (
-                    <img
+                    <Image
                       src={profile.photoURL}
                       alt={profile.displayName}
+                      width={24}
+                      height={24}
                       className="w-6 h-6 rounded-full"
                     />
                   ) : (
