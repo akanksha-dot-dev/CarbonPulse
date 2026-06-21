@@ -246,7 +246,6 @@ export function generateWhatIfForecast(
   );
 
   const baselineWeeklyKg = baselineAnnualKg / WEEKS_PER_YEAR;
-  const optimizedWeeklyKg = Math.max(0, baselineWeeklyKg - totalWeeklySavingsKg);
   const totalAnnualSavingsKg = totalWeeklySavingsKg * WEEKS_PER_YEAR;
   const projectedAnnual = Math.max(0, baselineAnnualKg - totalAnnualSavingsKg);
   const percentageReduction = baselineAnnualKg > 0
