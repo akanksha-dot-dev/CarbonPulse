@@ -44,6 +44,7 @@ export function DebounceSlider({
 
   // Sync when prop changes externally
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLocalValue(value);
   }, [value]);
 
