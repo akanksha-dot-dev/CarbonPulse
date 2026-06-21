@@ -29,7 +29,13 @@ import type { TransportInput, EnergyInput, DietInput, ConsumptionInput } from '@
 
 describe('calculateTransportEmissions', () => {
   it('returns 0 for bicycle mode regardless of distance', () => {
-    const input: TransportInput = { ...DEFAULT_TRANSPORT, mode: 'bicycle', dailyDistanceKm: 100 };
+    const input: TransportInput = {
+      ...DEFAULT_TRANSPORT,
+      mode: 'bicycle',
+      dailyDistanceKm: 100,
+      shortHaulFlightsPerYear: 0,
+      longHaulFlightsPerYear: 0,
+    };
     expect(calculateTransportEmissions(input)).toBe(0);
   });
 

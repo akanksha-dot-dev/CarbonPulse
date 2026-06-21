@@ -16,13 +16,14 @@ const HTML_ENTITIES: Record<string, string> = {
   '"': '&quot;',
   "'": '&#x27;',
   '/': '&#x2F;',
+  '=': '&#x3D;',
 };
 
 /**
  * Escape HTML special characters to prevent XSS injection.
  */
 export function sanitizeString(input: string): string {
-  return String(input).replace(/[&<>"'/]/g, (char) => HTML_ENTITIES[char] ?? char);
+  return String(input).replace(/[&<>"'/=]/g, (char) => HTML_ENTITIES[char] ?? char);
 }
 
 /**
